@@ -1,0 +1,11 @@
+{
+  "displayName": "Fywork CSJ",
+  "name": "com.fywork.csj",
+  "version": "1.0.0",
+  "unity": "2020.1",
+  "keywords": [
+    "fywork"
+  ],
+  "dependencies": {
+  }
+}
