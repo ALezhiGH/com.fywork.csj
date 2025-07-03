@@ -2,11 +2,12 @@
   "displayName": "Fywork CSJ",
   "name": "com.fywork.csj",
   "version": "1.0.0",
-  "unity": "2020.1",
+  "unity": "2022.1",
   "keywords": [
     "fywork"
   ],
   "dependencies": {
     "com.google.external-dependency-manager": "1.2.179"
-  }
+  },
+  "description": "\u5c01\u88c5CSJ SDK"
 }
