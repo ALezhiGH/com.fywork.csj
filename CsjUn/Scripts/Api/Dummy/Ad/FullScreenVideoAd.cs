@@ -39,10 +39,6 @@ namespace ByteDance.Union
         public void ShowFullScreenVideoAd() { }
 
         /// <summary>
-        /// Set to show the download bar.
-        /// </summary>
-        public void SetShowDownLoadBar(bool show) { }
-        /// <summary>
         /// get media extra info dictionary,all value is string type,some need developer cast to real type manually
         /// </summary>
         /// <returns></returns>

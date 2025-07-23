@@ -29,8 +29,8 @@ namespace ByteDance.Union.Mediation
         public bool ProgrammaticRecommend { get; set; } = true;
 
         /// <summary>
-        /// 是否禁止CAID，需adn支持，仅iOS支持，默认值false.
+        /// 20250723@Lezhi 兼容之前的版本
         /// </summary>
-        public bool forbiddenCAID { get; set; } = false;
+        public bool forbiddenCAID { get; set; }
     }
 }

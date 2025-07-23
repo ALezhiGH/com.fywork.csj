@@ -72,13 +72,6 @@ namespace ByteDance.Union
         }
 
         /// <summary>
-        /// Set to show the download bar.
-        /// </summary>
-        public void SetShowDownLoadBar(bool show)
-        {
-            this.ad.Call("setShowDownLoadBar", show);
-        }
-        /// <summary>
         /// get media extra info dictionary,all value is string type,some need developer cast to real type manually
         /// </summary>
         /// <returns></returns>

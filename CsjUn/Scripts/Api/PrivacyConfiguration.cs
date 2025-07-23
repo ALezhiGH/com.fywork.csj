@@ -1,4 +1,5 @@
 using System;
+using System.Collections.Generic;
 using ByteDance.Union.Mediation;
 
 namespace ByteDance.Union
@@ -57,6 +58,11 @@ namespace ByteDance.Union
          * 当CanUseAndroidId返回false时，可传入AndroidId，穿山甲sdk使用您传入的AndroidId
          */
         public string AndroidId { get; set; }
+
+        /**
+         * 开发者自定义传入的隐私相关设置，可设置key值可参考AdConst
+         */
+        public Dictionary<string, System.Object> UserPrivacyConfig { get; set; }
 
         /**
          * 使用融合功能时，传给聚合使用的隐私合规配置

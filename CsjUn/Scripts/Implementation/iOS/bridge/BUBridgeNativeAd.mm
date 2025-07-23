@@ -119,8 +119,8 @@ typedef void(*NativeAd_OnAdRemove)(int context);
     [_customview addSubview:_imageView];
     
     // add video view
-    [_customview addSubview:self.relatedView.videoAdView];
-    self.relatedView.videoAdView.delegate = self;
+    [_customview addSubview:self.relatedView.mediaAdView];
+    self.relatedView.mediaAdView.delegate = self;
     // add logo view
     self.relatedView.logoADImageView.frame = CGRectZero;
     [_customview addSubview:self.relatedView.logoADImageView];
@@ -173,8 +173,8 @@ typedef void(*NativeAd_OnAdRemove)(int context);
     [_customview addSubview:_imageView];
     
     // add video view
-    [_customview addSubview:self.relatedView.videoAdView];
-    self.relatedView.videoAdView.delegate = self;
+    [_customview addSubview:self.relatedView.mediaAdView];
+    self.relatedView.mediaAdView.delegate = self;
     // add logo view
     self.relatedView.logoADImageView.frame = CGRectZero;
     [_customview addSubview:self.relatedView.logoADImageView];
@@ -227,8 +227,8 @@ typedef void(*NativeAd_OnAdRemove)(int context);
     [_customview addSubview:_imageView];
     
     // add video view
-    [_customview addSubview:self.relatedView.videoAdView];
-    self.relatedView.videoAdView.delegate = self;
+    [_customview addSubview:self.relatedView.mediaAdView];
+    self.relatedView.mediaAdView.delegate = self;
     // add logo view
     self.relatedView.logoADImageView.frame = CGRectZero;
     [_customview addSubview:self.relatedView.logoADImageView];
@@ -273,11 +273,11 @@ typedef void(*NativeAd_OnAdRemove)(int context);
         adMeta.imageMode == BUFeedVideoAdModePortrait ||
         adMeta.imageMode == BUFeedADModeSquareVideo) {
         self.imageView.hidden = YES;
-        self.relatedView.videoAdView.hidden = NO;
-        self.relatedView.videoAdView.frame = rect;
+        self.relatedView.mediaAdView.hidden = NO;
+        self.relatedView.mediaAdView.frame = rect;
     } else {
         self.imageView.hidden = NO;
-        self.relatedView.videoAdView.hidden = YES;
+        self.relatedView.mediaAdView.hidden = YES;
         if (adMeta.imageAry.count > 0) {
             if (image.imageURL.length > 0) {
                 self.imageView.frame = rect;

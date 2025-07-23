@@ -11,7 +11,6 @@ using UnityEditor.Android;
         {
             projectBasePath = basePath;
             var androidManifest = new AndroidManifest(ManifestFilePath);
-            UnityEngine.Debug.Log($"[CSJ] SetHardwareAccel  basePath:{basePath}");
             androidManifest.SetHardwareAccel();
             androidManifest.Save();
         }

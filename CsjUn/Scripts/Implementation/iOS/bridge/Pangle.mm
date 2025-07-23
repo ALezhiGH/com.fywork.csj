@@ -11,7 +11,7 @@ void UnionPlatform_PangleInitializeSDK(PangleInitializeCallBack callback){
     if (string.length > 2) {
         [string insertString:@"," atIndex:string.length-1];
     }
-    [string insertString:@"{\"name\":\"unity_version\",\"value\":\"6.4.0.0\"}" atIndex:string.length-1];
+    [string insertString:@"{\"name\":\"unity_version\",\"value\":\"6.8.0.0\"}" atIndex:string.length-1];
     [BUAdSDKConfiguration configuration].userExtData = string.copy;
     NSLog(@"CSJM_Unity  %@",@"触发初始化SDK");
     [BUAdSDKManager startWithSyncCompletionHandler:^(BOOL success, NSError *error) {

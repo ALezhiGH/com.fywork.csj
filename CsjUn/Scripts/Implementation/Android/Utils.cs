@@ -30,6 +30,16 @@ namespace ByteDance.Union
                 customController.Call("setMediationPrivacyConfig", 
                     MakeMediationPrivacyConfig(controller.MediationPrivacyConfig));
             }
+
+            if (controller.UserPrivacyConfig != null)
+            {
+                foreach (var kv in controller.UserPrivacyConfig)
+                {
+                    Debug.Log("CSJM_Unity, setUserPrivacyConfig: " + kv.Key + ": " + kv.Value);
+                }
+                customController.Call("setUserPrivacyConfig", GetMapFromDictionary(controller.UserPrivacyConfig));
+            }
+
             return customController;
         }
         
@@ -118,7 +128,22 @@ namespace ByteDance.Union
             var jMap = new AndroidJavaObject("java.util.HashMap");
             foreach(KeyValuePair<string, System.Object> kvp in dict)
             {
-                jMap.Call<AndroidJavaObject>("put", kvp.Key, kvp.Value);
+                if (kvp.Value is bool)
+                {
+                    jMap.Call<AndroidJavaObject>("put", kvp.Key, new AndroidJavaObject("java.lang.Boolean", kvp.Value));
+                }
+                else if (kvp.Value is int || kvp.Value is long)
+                {
+                    jMap.Call<AndroidJavaObject>("put", kvp.Key, new AndroidJavaObject("java.lang.Integer", kvp.Value));
+                }
+                else if (kvp.Value is float || kvp.Value is double)
+                {
+                    jMap.Call<AndroidJavaObject>("put", kvp.Key, new AndroidJavaObject("java.lang.Float", kvp.Value));
+                }
+                else
+                {
+                    jMap.Call<AndroidJavaObject>("put", kvp.Key, kvp.Value);
+                }
             }
 
             return jMap;

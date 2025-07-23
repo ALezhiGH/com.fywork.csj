@@ -81,13 +81,6 @@ public class RewardVideoAdWrapper implements TTRewardVideoAd {
     }
 
     @Override
-    public void setShowDownLoadBar(boolean b) {
-        if (realAdObject != null) {
-            realAdObject.setShowDownLoadBar(b);
-        }
-    }
-
-    @Override
     public int getRewardVideoAdType() {
         if (realAdObject != null) {
             realAdObject.getRewardVideoAdType();

@@ -125,13 +125,6 @@ namespace ByteDance.Union
         }
 
         /// <summary>
-        /// Sets whether to show the download bar.
-        /// </summary>
-        public void SetShowDownLoadBar(bool show)
-        {
-        }
-
-        /// <summary>
         /// return the video is From preload
         /// </summary>
         /// <returns>bool</returns>

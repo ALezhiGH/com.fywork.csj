@@ -29,13 +29,55 @@ void UnionPlatform_setAppID(const char* appID) {
     NSLog(@"CSJM_Unity  %@ %@",@"设置appid", ocString);
 }
 
-const void UnionPlatform_setPrivacyProvider(bool canUseLocation, double latitude, double longitude){
+const void UnionPlatform_setPrivacyProvider(
+    bool canUseLocation,
+    double latitude,
+    double longitude,
+    const char* motion_info,
+    const char* bum_advertiser_tracking_enabled,
+    const char* bum_loc_time,
+    const char* bum_limit_personal_cpus,
+    const char* bum_disable_use_phone_status,
+    const char* bum_custom_idfv,
+    const char* bum_forbidden_idfv){
     BUDPrivacyProvider *pr = [[BUDPrivacyProvider alloc]init];
     pr.canUseLocation = canUseLocation;
     pr.longitude = isnan(longitude) ? 0 : longitude;
     pr.latitude = isnan(latitude) ? 0 : latitude;
+    NSMutableDictionary *privacyConfig = [[NSMutableDictionary alloc]init];
+    if (motion_info) {
+        [privacyConfig setValue:[[NSString alloc] initWithUTF8String:motion_info]
+                         forKey:@"motion_info"];
+    }
+    if (bum_advertiser_tracking_enabled) {
+        [privacyConfig setValue:[[NSString alloc] initWithUTF8String:bum_advertiser_tracking_enabled]
+                         forKey:@"bum_advertiser_tracking_enabled"];
+    }
+    if (bum_loc_time) {
+        [privacyConfig setValue:[[NSString alloc] initWithUTF8String:bum_loc_time]
+                         forKey:@"bum_loc_time"];
+    }
+    if (bum_limit_personal_cpus) {
+        [privacyConfig setValue:[[NSString alloc] initWithUTF8String:bum_limit_personal_cpus]
+                         forKey:@"bum_limit_personal_cpus"];
+    }
+    if (bum_disable_use_phone_status) {
+        [privacyConfig setValue:[[NSString alloc] initWithUTF8String:bum_disable_use_phone_status]
+                         forKey:@"bum_disable_use_phone_status"];
+    }
+    if (bum_custom_idfv) {
+        [privacyConfig setValue:[[NSString alloc] initWithUTF8String:bum_custom_idfv]
+                         forKey:@"bum_custom_idfv"];
+    }
+    if (bum_forbidden_idfv) {
+        [privacyConfig setValue:[[NSString alloc] initWithUTF8String:bum_forbidden_idfv]
+                         forKey:@"bum_forbidden_idfv"];
+    }
+    if (privacyConfig.count > 0) {
+        pr.privacyConfig = privacyConfig;
+    }
     [BUAdSDKConfiguration configuration].privacyProvider = pr;
-    NSLog(@"CSJM_Unity  %@ canUseLocation %d canUseLocation %f longitude%f ",@"设置privacyProvider", canUseLocation, latitude, longitude);
+    NSLog(@"CSJM_Unity  %@ canUseLocation %d canUseLocation %f longitude%f privacyConfigDict%@",@"设置privacyProvider", canUseLocation, latitude, longitude, privacyConfig);
 };
 
 const char* UnionPlatform_appID() {
@@ -201,15 +243,6 @@ bool UnionPlatform_UnityDeveloper() {
 
 void UnionPlatform_SetUnityDeveloper(bool unityDeveloper) {
     [BUAdSDKConfiguration configuration].unityDeveloper = (unityDeveloper == true);
-}
-
-bool UnionPlatform_forbiddenCAID() {
-    return [BUAdSDKConfiguration configuration].mediation.forbiddenCAID.boolValue;
-}
-
-void UnionPlatform_setForbiddenCAID(bool forbiddenCAID) {
-    [BUAdSDKConfiguration configuration].mediation.forbiddenCAID = forbiddenCAID ? @(1) : @(0);
-    NSLog(@"CSJM_Unity  %@ %d",@"设置forbiddenCAID", forbiddenCAID);
 }
 
 bool UnionPlatform_limitPersonalAds() {

@@ -16,6 +16,7 @@ NS_ASSUME_NONNULL_BEGIN
 @property (nonatomic, assign)CLLocationDegrees longitude;
 @property (nonatomic, assign)CLLocationDegrees latitude;
 @property (nonatomic, assign)BOOL canUseLocation;
+@property (nonatomic, strong)NSDictionary *privacyConfig;
 
 @end
 

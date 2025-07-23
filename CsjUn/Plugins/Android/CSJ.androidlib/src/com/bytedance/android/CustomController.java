@@ -1,8 +1,12 @@
 package com.bytedance.android;
 
+import android.util.Log;
+
 import com.bytedance.sdk.openadsdk.LocationProvider;
 import com.bytedance.sdk.openadsdk.TTCustomController;
 import com.bytedance.sdk.openadsdk.mediation.init.IMediationPrivacyConfig;
+
+import java.util.Map;
 
 /**
  * created by jijiachun on 2021/10/26
@@ -26,6 +30,8 @@ public class CustomController extends TTCustomController {
     private boolean mIsCanUsePermissionRecordAudio = true;
 
     private IMediationPrivacyConfig mediationPrivacyConfig;
+
+    private Map<String, Object> mUserPrivacyConfig;
 
     public void canUseLocation(boolean canUseLocation) {
         mIsCanUseLocation = canUseLocation;
@@ -78,6 +84,11 @@ public class CustomController extends TTCustomController {
 
     public void setMediationPrivacyConfig(IMediationPrivacyConfig config) {
         this.mediationPrivacyConfig = config;
+    }
+
+    public void setUserPrivacyConfig(Map<String, Object> userPrivacyConfig) {
+        this.mUserPrivacyConfig = userPrivacyConfig;
+        Log.i("TMe", "native csjm unity: " + userPrivacyConfig);
     }
 
     public IMediationPrivacyConfig getMediationPrivacyConfig() {
@@ -195,6 +206,10 @@ public class CustomController extends TTCustomController {
     
     public boolean isCanUsePermissionRecordAudio() {
         return mIsCanUsePermissionRecordAudio;
+    }
+
+    public Map<String, Object> userPrivacyConfig() {
+        return mUserPrivacyConfig;
     }
 
 }

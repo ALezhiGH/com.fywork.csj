@@ -58,12 +58,6 @@ namespace ByteDance.Union
             set { UnionPlatform_setPublisherDid(value); }
         }
 
-        public bool forbiddenCAID
-        {
-            get { return UnionPlatform_forbiddenCAID(); }
-            set { UnionPlatform_setForbiddenCAID(value); }
-        }
-
         public bool limitProgrammaticAds
         {
             get { return UnionPlatform_limitProgrammaticAds(); }
@@ -77,12 +71,38 @@ namespace ByteDance.Union
             set {
                 if (value != null)
                 {
-                    UnionPlatform_setPrivacyProvider(value.CanUseLocation, value.Latitude, value.Longitude);
+                    object motion_info = null;
+                    object bum_advertiser_tracking_enabled = null;
+                    object bum_loc_time = null;
+                    object bum_limit_personal_cpus = null;
+                    object bum_disable_use_phone_status = null;
+                    object bum_custom_idfv = null;
+                    object bum_forbidden_idfv = null;
+                    if (value.UserPrivacyConfig != null)
+                    {
+                        value.UserPrivacyConfig.TryGetValue("motion_info", out motion_info);
+                        value.UserPrivacyConfig.TryGetValue(AdConst.bum_advertiser_tracking_enabled, out bum_advertiser_tracking_enabled);
+                        value.UserPrivacyConfig.TryGetValue(AdConst.bum_loc_time, out bum_loc_time);
+                        value.UserPrivacyConfig.TryGetValue(AdConst.bum_limit_personal_cpus, out bum_limit_personal_cpus);
+                        value.UserPrivacyConfig.TryGetValue(AdConst.bum_disable_use_phone_status, out bum_disable_use_phone_status);
+                        value.UserPrivacyConfig.TryGetValue(AdConst.bum_custom_idfv, out bum_custom_idfv);
+                        value.UserPrivacyConfig.TryGetValue(AdConst.bum_forbidden_idfv, out bum_forbidden_idfv);
+                    }
+                    UnionPlatform_setPrivacyProvider(
+                        value.CanUseLocation,
+                        value.Latitude,
+                        value.Longitude,
+                        motion_info as string,
+                        bum_advertiser_tracking_enabled as string,
+                        bum_loc_time as string,
+                        bum_limit_personal_cpus as string,
+                        bum_disable_use_phone_status as string,
+                        bum_custom_idfv as string,
+                        bum_forbidden_idfv as string);
 
                     PangleConfiguration c = PangleConfiguration.CreateInstance();
                     if (value.MediationPrivacyConfig != null)
                     {
-                        c.forbiddenCAID = value.MediationPrivacyConfig.forbiddenCAID;
                         c.limitProgrammaticAds = value.MediationPrivacyConfig.ProgrammaticRecommend ? false : true;
                         c.limitPersonalAds = value.MediationPrivacyConfig.LimitPersonalAds;
                     }
@@ -90,7 +110,7 @@ namespace ByteDance.Union
                     if (value.CustomIdfa != null)
                     {
                         c.customIdfa = value.CustomIdfa;
-                    }
+                    }  
                 }
             }
 
@@ -325,10 +345,6 @@ namespace ByteDance.Union
         [DllImport("__Internal")]
         private static extern bool UnionPlatform_UnityDeveloper();
 
-        [DllImport("__Internal")]
-        private static extern void UnionPlatform_setForbiddenCAID(bool forbiddenCAID);
-        [DllImport("__Internal")]
-        private static extern bool UnionPlatform_forbiddenCAID();
 
         [DllImport("__Internal")]
         private static extern void UnionPlatform_setLimitPersonalAds(bool limitPersonalAds);
@@ -347,7 +363,18 @@ namespace ByteDance.Union
         private static extern void UnionPlatform_setUserInfoForSegment(string user_id, string user_value_group, int age, string gender, string channel, string sub_channel, string customized_id);
 
         [DllImport("__Internal")]
-        private static extern void UnionPlatform_setPrivacyProvider(bool canUseLocation, double latitude, double longitude);
+        private static extern void UnionPlatform_setPrivacyProvider(
+            bool canUseLocation,
+            double latitude,
+            double longitude,
+            string motion_info,
+            string bum_advertiser_tracking_enabled,
+            string bum_loc_time,
+            string bum_limit_personal_cpus,
+            string bum_disable_use_phone_status,
+            string bum_custom_idfv,
+            string bum_forbidden_idfv
+            );
 
         [DllImport("__Internal")]
         private static extern void UnionPlatform_setdebugLogebugLog(bool debugLog);
