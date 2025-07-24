@@ -1,5 +1,8 @@
+# 2.0.1 更新时间:2025-07-24
+* #1 增加宏定义 FY_CSJ
+
 # 2.0.0 更新时间:2025-07-23
-CSJ SDK 更新时间: 2025-06-10版本号: 6.8.0.0
+* #1 CSJ SDK 更新时间: 2025-06-10版本号: 6.8.0.0
 【新增】支持iOS直播拉流，预计闭环预算消耗+10%-20%，开发者在集成时需手动添加BUAdLive-Framework，详见https://bytedance.larkoffice.com/docx/Fv5odfmxpoKu4CxxfIGcJKdznFh;
 【变更】广告回调逻辑变更，show回调由多次调整为仅一次，对于在列表滑入滑出或切换前后台时不再执行show回调 ;
 【重要】68版本不再支持Android 6.0&6.1及以下；
@@ -15,7 +18,8 @@ CSJ SDK 更新时间: 2025-06-10版本号: 6.8.0.0
 【修复】已知问题;
 
 # 1.0.0 更新时间:2025-07-02
-CSJ SDK 更新时间: 2024-10-09版本号: 6.4.0.0
+https://www.csjplatform.com/union/media/union/download/log?id=202&cate=1&backPath=/union/media/union/download/pangle
+* #1 CSJ SDK 更新时间: 2024-10-09版本号: 6.4.0.0
 【提升】SDK安全性能；
 【优化】聚合页样式；
 【适配】iOS18系统；
